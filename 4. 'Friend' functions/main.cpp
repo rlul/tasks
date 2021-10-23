@@ -12,7 +12,7 @@ int main() {
 	while (true) {
 
 		int** arr = new int* [3];
-		for (int i = 0; i < 3; i++)		// случайное заполнение массива
+		for (int i = 0; i < 3; i++)		// СЃР»СѓС‡Р°Р№РЅРѕРµ Р·Р°РїРѕР»РЅРµРЅРёРµ РјР°СЃСЃРёРІР°
 			arr[i] = new int[3]{ RAND(-10, 10), RAND(-10, 10), RAND(-10, 10) };
 
 		CArray test(arr, 3, 3);
