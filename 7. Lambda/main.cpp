@@ -5,14 +5,14 @@
 
 int main() {
 
-	// ~~~ 1.1) Вывод элементов вектора лямбда-выражением ~~~
+	// ~~~ 1.1) Р’С‹РІРѕРґ СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР° Р»СЏРјР±РґР°-РІС‹СЂР°Р¶РµРЅРёРµРј ~~~
 	std::vector<int> vec = { 7, 9, 1, 5, 2, 4, 3, 8, 6, 0 };
 	printf(" Task 1:\n");
-	std::for_each(vec.begin(), vec.end(), [](int& num) {	// - Вывод
+	std::for_each(vec.begin(), vec.end(), [](int& num) {	// - Р’С‹РІРѕРґ
 		printf("%d ", num);
 	});
 
-	// ~~~ 1.2) Подсчёт количества перестановок элементов при сортировке ~~~
+	// ~~~ 1.2) РџРѕРґСЃС‡С‘С‚ РєРѕР»РёС‡РµСЃС‚РІР° РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє СЌР»РµРјРµРЅС‚РѕРІ РїСЂРё СЃРѕСЂС‚РёСЂРѕРІРєРµ ~~~
 	int num_of_swaps = 0;
 	std::sort(vec.begin(), vec.end(), [&num_of_swaps](int& a, int& b) {
 		if (a > b)
@@ -21,11 +21,11 @@ int main() {
 	});
 	printf("\n\n Task 2:\nswaps: %d\n", num_of_swaps);
 
-	std::for_each(vec.begin(), vec.end(), [](int& num) {	// - Вывод
+	std::for_each(vec.begin(), vec.end(), [](int& num) {	// - Р’С‹РІРѕРґ
 		printf("%d ", num);
 	});
 
-	// ~~~ 1.3) Поиск вхождения подстроки ~~~
+	// ~~~ 1.3) РџРѕРёСЃРє РІС…РѕР¶РґРµРЅРёСЏ РїРѕРґСЃС‚СЂРѕРєРё ~~~
 	std::vector<std::string> words{ "ememe", "banana", "walnut", "lemon" };
 	std::string substr;
 
@@ -41,7 +41,7 @@ int main() {
 	else
 		printf("Found %s!\n", found->substr().c_str());
 	
-	// ~~~ 2.1) Генерация вектора из N-последовательных элементов ~~~
+	// ~~~ 2.1) Р“РµРЅРµСЂР°С†РёСЏ РІРµРєС‚РѕСЂР° РёР· N-РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ ~~~
 	int range_limit = 0;
 	printf("\n Task 4:\nNumeric range from 0 to: ");	
 	std::cin >> range_limit;
@@ -53,11 +53,11 @@ int main() {
 		num = s_num++;
 	});
 
-	std::for_each(num_range.begin(), num_range.end(), [](int& num) {	// - Вывод
+	std::for_each(num_range.begin(), num_range.end(), [](int& num) {	// - Р’С‹РІРѕРґ
 		printf("%d ", num);
 	});
 
-	// ~~~ 2.2) Отбросить k-элементов слева и добавить k-последовательных элементов в конец  ~~~
+	// ~~~ 2.2) РћС‚Р±СЂРѕСЃРёС‚СЊ k-СЌР»РµРјРµРЅС‚РѕРІ СЃР»РµРІР° Рё РґРѕР±Р°РІРёС‚СЊ k-РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РєРѕРЅРµС†  ~~~
 	std::vector<int> new_range(range_limit);
 	int shift_num = 0;
 	printf("\n\n Task 5:\nEnter a number of elementes to shift: ");
@@ -69,7 +69,7 @@ int main() {
 		num = new_num++;
 	});
 
-	std::for_each(new_range.begin(), new_range.end(), [](int& num) {	// - Вывод
+	std::for_each(new_range.begin(), new_range.end(), [](int& num) {	// - Р’С‹РІРѕРґ
 		printf("%d ", num);
 	});
 	return 0;

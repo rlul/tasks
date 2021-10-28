@@ -19,33 +19,33 @@ int main() {
 	std::vector<item_t> backpack;
 	std::vector<item_t> item_range(ITEM_RANGE_SIZE);
 
-	// ~~~ Вывод предметов ~~~
+	// ~~~ Р’С‹РІРѕРґ РїСЂРµРґРјРµС‚РѕРІ ~~~
 	printf("Item range:\n");
 	for (const auto item : item_range)
 		printf("- cost: $%d, weight %dg\n", item.m_cost, item.m_weight);
 
-	// ~~~ Сортировка по соотношению цена/вес ~~~
+	// ~~~ РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ СЃРѕРѕС‚РЅРѕС€РµРЅРёСЋ С†РµРЅР°/РІРµСЃ ~~~
 	std::sort(item_range.begin(), item_range.end(),		
 		[](const item_t& a, const item_t& b) {
 			return (static_cast<float>(a.m_cost) / a.m_weight) > (static_cast<float>(b.m_cost) / b.m_weight);
 	});
 
-	// ~~~ Вывод предметов после сортировки ~~~
+	// ~~~ Р’С‹РІРѕРґ РїСЂРµРґРјРµС‚РѕРІ РїРѕСЃР»Рµ СЃРѕСЂС‚РёСЂРѕРІРєРё ~~~
 	printf("\nItem range ( after sorting ):\n");
 	for (const auto item : item_range)
 		printf("- cost: $%d, weight %dg\n", item.m_cost, item.m_weight);
 
-	// ~~~ Нахождение количества предметов, умещаемых в рюкзаке по весу ~~~
+	// ~~~ РќР°С…РѕР¶РґРµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° РїСЂРµРґРјРµС‚РѕРІ, СѓРјРµС‰Р°РµРјС‹С… РІ СЂСЋРєР·Р°РєРµ РїРѕ РІРµСЃСѓ ~~~
 	int num_of_items = 0;
 	for (int sum = 0; num_of_items < ITEM_RANGE_SIZE; num_of_items++) {
 		sum += item_range.at(num_of_items).m_weight;
 		if (sum > WEIGHT_LIMIT) break;
 	}
 
-	// ~~~ Заполнение рюкзака предметами ~~~
+	// ~~~ Р—Р°РїРѕР»РЅРµРЅРёРµ СЂСЋРєР·Р°РєР° РїСЂРµРґРјРµС‚Р°РјРё ~~~
 	backpack.assign(item_range.begin(), item_range.begin() + num_of_items);
 
-	// ~~~ Вывод предметов в рюкзаке ~~~
+	// ~~~ Р’С‹РІРѕРґ РїСЂРµРґРјРµС‚РѕРІ РІ СЂСЋРєР·Р°РєРµ ~~~
 	printf("\nBackpack:\n");
 	for (const auto item : backpack)
 		printf("- cost: $%d, weight %dg\n", item.m_cost, item.m_weight);
