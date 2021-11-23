@@ -10,20 +10,9 @@
 template<typename T> void show(vector_t<T>&);
 template<typename T> void show_info(vector_t<T>&);
 
-template<typename C, typename V>
-V** find_all(C& c, V v) {
-	V** data = new V*[c.size()];
-	int iter = 0;
-	for (const auto& elem : c)
-		if (elem == v)
-			data[iter++] = (V*)&elem;
-			
-	return data;
-}
-
 int main() {
 
-	constexpr int iterations = 1;
+	constexpr int iterations = 1000;
 	constexpr int count = 1000;
 
 	std::vector<int> base(count), stdvec;

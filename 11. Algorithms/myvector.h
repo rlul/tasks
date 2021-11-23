@@ -2,31 +2,57 @@
 #include <memory>
 #include <exception>
 #include <stdarg.h>
-
+#include <initializer_list>
 
 template<typename T>
 class vector_t {
 public:
-	vector_t(int size = 0, ...) 
+	vector_t(int size = 0) 
 		: m_capacity(size) {
+		printf("[!] vector_t(int size)\n");
 		if (!size) return;
-		va_list args;
-		va_start(args, size);
 		m_array = new T[size]{ 0 };
-		memcpy(m_array, &va_arg(args, T), size * sizeof(T));
-		va_end(args);
 		update_iter();
 	}
+	vector_t(std::initializer_list<T> list)
+		: m_capacity(list.size()) {
+		printf("[!] vector_t(std::initializer_list<T> list)\n");
+		int size = list.size();
+		if (!size) return;
+		m_array = new T[size]{ 0 };
+		memcpy(m_array, list.begin(), size * sizeof(T));
+		update_iter();
+	}
+	vector_t(const vector_t& orig) 
+		: m_capacity(orig.size()) {
+		printf("[!] vector_t(const vector_t& orig)\n");
+		int size = orig.size();
+		m_array = new T[size];
+		memcpy(m_array, orig.m_array, size);
+		update_iter();
+	}
+	vector_t(vector_t&& orig)
+		: m_capacity(orig.size()) {
+		printf("[!] vector_t(vector_t&& orig)\n");
+		int size = orig.size();
+		m_array = new T[size];
+		memcpy(m_array, orig.m_array, size);
+		update_iter();
+
+		orig.m_array = 0;
+		orig.m_capacity = 0;
+	}
 	~vector_t() {
+		printf("[!] ~vector()\n");
 		delete[] m_array;
 	}
 
-	int& at(int index) {
+	T& at(int index) {
 		if (index < 0)
 			throw std::exception("Invalid index!");
 		return operator[](index);
 	}
-	int& operator[](int index) {
+	T& operator[](int index) {
 		if (index >= m_capacity) {
 			int newcap = m_capacity + (index - m_capacity) + 1;
 			T* p_newarr = new T[newcap]{0};
@@ -37,6 +63,22 @@ public:
 		}
 		return m_array[index];
 	}
+	vector_t& operator=(const vector_t& orig) {
+		int size = orig.size();
+		m_array = new T[size];
+		memcpy(m_array, orig.m_array, size);
+		update_iter();
+	}
+	vector_t& operator=(vector_t&& orig) {
+		int size = orig.size();
+		m_array = new T[size];
+		memcpy(m_array, orig.m_array, size);
+		update_iter();
+
+		orig.m_array = 0;
+		orig.m_capacity = 0;
+	}
+
 
 	T* push(T obj) {
 		if (size() >= m_capacity) {
@@ -55,14 +97,10 @@ public:
 		return buf;
 	}
 
-	void erase(int index) {
-
-	}
-
-	int* begin() {
+	T* begin() {
 		return m_first;
 	}
-	int* end() {
+	T* end() {
 		return m_last;
 	}
 
@@ -83,6 +121,18 @@ protected:
 	T* m_array;
 	T* m_first, * m_last;
 	unsigned int m_capacity;
+}; 
+
+class vectorview_t {
+public:
+	vectorview_t();
+
+	vectorview_t(const vector_t<int> vec)
+		: m_vec(std::move(vec))
+	{}
+
+protected:
+	vector_t<int> m_vec;
 };
 
 void CountSort(vector_t<int>&);

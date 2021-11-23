@@ -9,7 +9,7 @@ template<typename T> void show_info(vector_t<T>&);
 
 int main() {
 
-	vector_t<int> vec(3, 1, 2, 3);
+	vector_t<int> vec = { 1, 2, 3 };
 	show(vec);
 	show_info(vec);
 
